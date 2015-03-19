@@ -14,6 +14,8 @@
 		2D423DB01AB6E788008EF7E1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D423DAF1AB6E788008EF7E1 /* Images.xcassets */; };
 		2D423DB31AB6E788008EF7E1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D423DB11AB6E788008EF7E1 /* LaunchScreen.xib */; };
 		2D423DBF1AB6E788008EF7E1 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D423DBE1AB6E788008EF7E1 /* TodoTests.m */; };
+		54A244A51ABAEDE1005C41EA /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A244A31ABAEDE1005C41EA /* TodoTableViewCell.m */; };
+		54A244A61ABAEDE1005C41EA /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A244A41ABAEDE1005C41EA /* TodoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		2D423DB81AB6E788008EF7E1 /* TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D423DBD1AB6E788008EF7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D423DBE1AB6E788008EF7E1 /* TodoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTests.m; sourceTree = "<group>"; };
+		54A244A21ABAEDE1005C41EA /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
+		54A244A31ABAEDE1005C41EA /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		54A244A41ABAEDE1005C41EA /* TodoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +94,9 @@
 				2D423DAF1AB6E788008EF7E1 /* Images.xcassets */,
 				2D423DB11AB6E788008EF7E1 /* LaunchScreen.xib */,
 				2D423DA21AB6E788008EF7E1 /* Supporting Files */,
+				54A244A21ABAEDE1005C41EA /* TodoTableViewCell.h */,
+				54A244A31ABAEDE1005C41EA /* TodoTableViewCell.m */,
+				54A244A41ABAEDE1005C41EA /* TodoTableViewCell.xib */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 				2D423DAE1AB6E788008EF7E1 /* Main.storyboard in Resources */,
 				2D423DB31AB6E788008EF7E1 /* LaunchScreen.xib in Resources */,
 				2D423DB01AB6E788008EF7E1 /* Images.xcassets in Resources */,
+				54A244A61ABAEDE1005C41EA /* TodoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +231,7 @@
 				2D423DAB1AB6E788008EF7E1 /* ViewController.m in Sources */,
 				2D423DA81AB6E788008EF7E1 /* AppDelegate.m in Sources */,
 				2D423DA51AB6E788008EF7E1 /* main.m in Sources */,
+				54A244A51ABAEDE1005C41EA /* TodoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
