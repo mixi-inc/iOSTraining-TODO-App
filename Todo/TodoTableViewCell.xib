@@ -12,7 +12,24 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvJ-Ur-bNC">
+                        <rect key="frame" x="8" y="8" width="304" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gvJ-Ur-bNC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8Sr-rR-XfL"/>
+                    <constraint firstItem="gvJ-Ur-bNC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cDc-NJ-lvj"/>
+                    <constraint firstAttribute="trailing" secondItem="gvJ-Ur-bNC" secondAttribute="trailing" constant="8" id="ku5-Hv-s64"/>
+                    <constraint firstAttribute="bottom" secondItem="gvJ-Ur-bNC" secondAttribute="bottom" constant="8" id="snW-5w-SPN"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="todoLabel" destination="gvJ-Ur-bNC" id="1ZN-dg-xCf"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

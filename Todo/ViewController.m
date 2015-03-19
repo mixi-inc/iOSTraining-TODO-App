@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TodoTableViewCell.h"
 
 @interface ViewController () <UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -32,7 +33,12 @@
 
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"cell"];
+
+    UINib *nib = [UINib nibWithNibName:@"TodoTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
+
     self.tableView.dataSource = self;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,8 +53,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.textLabel.text = self.todo[indexPath.row];
+    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.todoLabel.text = self.todo[indexPath.row];
     return cell;
 }
 

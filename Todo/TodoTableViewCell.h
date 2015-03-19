@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TodoTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *todoLabel;
 
 @end
