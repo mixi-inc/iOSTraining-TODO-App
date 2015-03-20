@@ -9,9 +9,10 @@
 #import "ViewController.h"
 #import "TodoTableViewCell.h"
 
-@interface ViewController () <UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *todo;
+@property (strong, nonatomic) TodoTableViewCell *offscreenCell;
 @end
 
 @implementation ViewController
@@ -31,14 +32,33 @@
                   @"ビールを飲む"
                   ];
 
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"cell"];
-
     UINib *nib = [UINib nibWithNibName:@"TodoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 
+    self.offscreenCell = [nib instantiateWithOwner:nil options:nil][0];
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+}
 
+- (void)viewDidLayoutSubviews
+{
+    self.offscreenCell.bounds = CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.tableView.bounds));
+    [self.offscreenCell setNeedsLayout];
+    [self.offscreenCell layoutIfNeeded];
+    self.offscreenCell.todoLabel.text = nil;
+    self.offscreenCell.todoLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.offscreenCell.todoLabel.bounds);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TodoTableViewCell *cell = self.offscreenCell;
+
+    cell.todoLabel.text = self.todo[indexPath.row];
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+
+    return ceil(size.height) + 1.0; // 1.0はUITableViewCellのcontentViewとcellの間にあるマージン
 }
 
 - (void)didReceiveMemoryWarning {
