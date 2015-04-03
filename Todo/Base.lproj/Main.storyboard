@@ -18,7 +18,6 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZe-A3-Cff">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -31,6 +30,9 @@
                             <constraint firstAttribute="trailing" secondItem="AZe-A3-Cff" secondAttribute="trailing" id="sRM-EC-PoH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textViewBottomConstraint" destination="2QZ-Es-aKN" id="jSK-v1-LbF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGt-Xb-xLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

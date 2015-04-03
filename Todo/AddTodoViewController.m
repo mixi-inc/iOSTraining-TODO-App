@@ -9,6 +9,7 @@
 #import "AddTodoViewController.h"
 
 @interface AddTodoViewController ()
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomConstraint;
 
 @end
 
@@ -25,6 +26,17 @@
                                                                                            target:self
                                                                                            action:@selector(doneButtonTapped:)];
 
+    // キーボード表示時の通知を受け取るようにオブザーバーとして登録する
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    // インスタンスが破棄されても通知は呼ばれるので通知されないようにする
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +53,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    // キーボードのサイズを取得
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
+    // キーボードのサイズに合わせてTextViewの下マージンの値を変える
+    self.textViewBottomConstraint.constant = CGRectGetHeight(keyboardFrame);
+}
 
 - (void)cancelButtonTapped:(id)sender
 {
