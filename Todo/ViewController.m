@@ -78,4 +78,9 @@
     return cell;
 }
 
+
+- (IBAction)addButtonTapped:(id)sender {
+    NSLog(@"addButtonTapped");
+}
+
 @end
