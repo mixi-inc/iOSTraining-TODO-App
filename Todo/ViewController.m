@@ -10,7 +10,7 @@
 #import "TodoTableViewCell.h"
 #import "AddTodoViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, AddTodoViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *todo;
 @property (strong, nonatomic) TodoTableViewCell *offscreenCell;
@@ -84,12 +84,33 @@
 
     // Main.storyboardの Storyboard ID "AddTodoViewController" で登録されているViewControllerの初期化
     AddTodoViewController *addTodoViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTodoViewController"];
+    addTodoViewController.delegate = self; // addTodoViewControllerが完了した時に呼ばれるクラスをこのクラスにする
+
 
     // AddTodoViewController ではNavigationBarにキャンセル、完了ボタンがあるのでUINavigationControllerで管理する
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addTodoViewController];
 
     // 表示
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+// 新しいToDoが追加された時に呼ばれる
+- (void)addTodoViewController:(AddTodoViewController *)sender addTodoCompleted:(NSString *)newTodo
+{
+    // 表示していた AddTodoViewController を閉じる
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    if (newTodo != nil) {
+
+        // 新しいToDoを追加
+        NSMutableArray *todo = [NSMutableArray arrayWithArray:self.todo];
+        [todo insertObject:newTodo atIndex:0];
+        self.todo = [NSArray arrayWithArray:todo];
+
+        // tableveiwの再読み込み
+        [self.tableView reloadData];
+
+    }
 }
 
 @end

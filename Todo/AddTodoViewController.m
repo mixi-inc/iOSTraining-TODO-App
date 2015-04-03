@@ -10,6 +10,7 @@
 
 @interface AddTodoViewController ()
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomConstraint;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -67,12 +68,14 @@
 
 - (void)cancelButtonTapped:(id)sender
 {
-
+    // キャンセルボタンがタップされた時にdelegateに通知する. 新しいToDoはnil
+    [self.delegate addTodoViewController:self addTodoCompleted:nil];
 }
 
 - (void)doneButtonTapped:(id)sender
 {
-
+    // doneボタンがタップされた時にdelegateに通知する. 新しいToDoはTextViewのテキスト
+    [self.delegate addTodoViewController:self addTodoCompleted:self.textView.text];
 }
 
 @end

@@ -31,6 +31,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="textView" destination="AZe-A3-Cff" id="SMh-Vo-Y1X"/>
                         <outlet property="textViewBottomConstraint" destination="2QZ-Es-aKN" id="jSK-v1-LbF"/>
                     </connections>
                 </viewController>
