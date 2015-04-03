@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TodoTableViewCell.h"
+#import "AddTodoViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -80,7 +81,15 @@
 
 
 - (IBAction)addButtonTapped:(id)sender {
-    NSLog(@"addButtonTapped");
+
+    // Main.storyboardの Storyboard ID "AddTodoViewController" で登録されているViewControllerの初期化
+    AddTodoViewController *addTodoViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddTodoViewController"];
+
+    // AddTodoViewController ではNavigationBarにキャンセル、完了ボタンがあるのでUINavigationControllerで管理する
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addTodoViewController];
+
+    // 表示
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end
