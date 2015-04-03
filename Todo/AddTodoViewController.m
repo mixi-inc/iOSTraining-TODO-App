@@ -16,7 +16,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                          target:self
+                                                                                          action:@selector(cancelButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self
+                                                                                           action:@selector(doneButtonTapped:)];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +41,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)cancelButtonTapped:(id)sender
+{
+
+}
+
+- (void)doneButtonTapped:(id)sender
+{
+
+}
 
 @end
