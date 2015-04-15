@@ -80,6 +80,32 @@
 }
 
 
+// UITableViewの編集モードに各rowが移行できるかどうかを返すメソッド. 今回はすべてのセルにTODOが表示されており、削除できるのでYESを返す
+// このメソッドを実装することでセルをスワイプした時に赤い "Delete" ボタンが出現する
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+// セルをスワイプした時の赤い "Delete" ボタンをタップしたときのハンドラ
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 他の編集モードもあるが、UITableViewCellEditingStyleDeleteの場合のみ扱う
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        // UITableViewをアニメーション付きで削除する場合以下の二点を実行します
+        // 1. データ構造(今回だとself.todo)から該当するデータを削除する
+        // 2. beginUpdates - endUpdatesの間で tableView#deleteRowsAtIndexPaths でセルを削除する
+
+        [self.todo removeObjectAtIndex:indexPath.row];
+
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+
+    }
+}
+
 - (IBAction)addButtonTapped:(id)sender {
 
     // Main.storyboardの Storyboard ID "AddTodoViewController" で登録されているViewControllerの初期化
