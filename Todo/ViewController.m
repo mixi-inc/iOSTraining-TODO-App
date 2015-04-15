@@ -12,7 +12,7 @@
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate, AddTodoViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *todo;
+@property (strong, nonatomic) NSMutableArray *todo;
 @property (strong, nonatomic) TodoTableViewCell *offscreenCell;
 @end
 
@@ -31,7 +31,7 @@
                   @"犬の散歩",
                   @"雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ",
                   @"ビールを飲む"
-                  ];
+                  ].mutableCopy;
 
     UINib *nib = [UINib nibWithNibName:@"TodoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
@@ -103,9 +103,7 @@
     if (newTodo != nil) {
 
         // 新しいToDoを追加
-        NSMutableArray *todo = [NSMutableArray arrayWithArray:self.todo];
-        [todo insertObject:newTodo atIndex:0];
-        self.todo = [NSArray arrayWithArray:todo];
+        [self.todo insertObject:newTodo atIndex:0];
 
         // tableveiwの再読み込み
         [self.tableView reloadData];
