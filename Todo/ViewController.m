@@ -38,6 +38,10 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
     self.tableView.delegate = self;
 
     NSLog(@"%@/Preferences", NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject);
+
+    // UserDefaultsに保存されているTODOを読み込み、インスタンス変数にセットする
+    NSArray *savedTodo = [[NSUserDefaults standardUserDefaults] objectForKey:kSavedToDoUserDefaultsKey];
+    [self.todo addObjectsFromArray:savedTodo];
 }
 
 - (void)viewDidLayoutSubviews
