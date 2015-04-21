@@ -106,6 +106,10 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
 
+        // UserDefaultsへ上書きする
+        [[NSUserDefaults standardUserDefaults] setObject:self.todo
+                                                  forKey:kSavedToDoUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
