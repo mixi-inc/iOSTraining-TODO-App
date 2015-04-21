@@ -16,6 +16,12 @@
 @property (strong, nonatomic) TodoTableViewCell *offscreenCell;
 @end
 
+/**
+ *  UserDefaultsにTODOを書き込み/読み込みを行う際に用いる識別子.
+ *  他のキーと被ってはいけない, typoの予防のため定数化しておく.
+ */
+static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
+
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -30,6 +36,8 @@
     self.offscreenCell = [nib instantiateWithOwner:nil options:nil][0];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+
+    NSLog(@"%@/Preferences", NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject);
 }
 
 - (void)viewDidLayoutSubviews
@@ -121,6 +129,11 @@
 
         // 新しいToDoを追加
         [self.todo insertObject:newTodo atIndex:0];
+
+        // UserDefaultsへの書き込み
+        [[NSUserDefaults standardUserDefaults] setObject:self.todo
+                                                  forKey:kSavedToDoUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 
         // tableveiwの再読み込み
         [self.tableView reloadData];
