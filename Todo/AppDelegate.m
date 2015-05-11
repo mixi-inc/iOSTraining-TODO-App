@@ -42,4 +42,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// 通知の許可は非同期で取得されてこのメソッドが呼ばれる.
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    if (notificationSettings.types != UIUserNotificationTypeNone) {
+        // 通知の許可が下りるまで待っているクラスに通知するためにNSNotificationを発火する
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotificationSettingsRegisterd" object:nil];
+    }
+}
+
 @end

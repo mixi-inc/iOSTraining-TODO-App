@@ -14,6 +14,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *todo;
 @property (strong, nonatomic) TodoTableViewCell *offscreenCell;
+
+/// 通知の許可を得ている最中, notificationを保持しておく
+@property (strong, nonatomic) UILocalNotification *pendingNotification;
 @end
 
 /**
@@ -42,6 +45,18 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
     // UserDefaultsに保存されているTODOを読み込み、インスタンス変数にセットする
     NSArray *savedTodo = [[NSUserDefaults standardUserDefaults] objectForKey:kSavedToDoUserDefaultsKey];
     [self.todo addObjectsFromArray:savedTodo];
+
+    // 通知の設定が変更された時にAppDelegateから通知を発火しているのでそれをキャッチする.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userNotificationSettingsRegisterd:)
+                                                 name:@"UserNotificationSettingsRegisterd"
+                                               object:nil];
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLayoutSubviews
@@ -157,6 +172,36 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
         // tableveiwの再読み込み
         [self.tableView reloadData];
 
+        // LocalNotificationへ追加
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.fireDate = newTodo[@"date"];
+        notification.alertBody = newTodo[@"title"];
+        notification.alertTitle = @"ToDo";
+
+        // 通知を出すにはユーザーの許可を得る必要がある. 通知を許可しているかどうかを確認し, 未許可の場合は許可を得る
+        // すでに許可している場合は通知を登録する
+        UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (currentSettings.types == UIUserNotificationTypeNone) {
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings]; // 通知の許可を得る
+            // 通知の許可は非同期で行われる. 許可した場合は appDelegateの application#didRegisterUserNotificationSettings が呼ばれる
+            // それまでこの通知のインスタンスを一旦保持しておく
+            self.pendingNotification = notification;
+
+        } else {
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
+
+    }
+}
+
+// 通知の許可がされた時に通知されるNotificationのハンドラ
+- (void)userNotificationSettingsRegisterd:(NSNotification *)notification
+{
+    if (self.pendingNotification != nil) {
+        // 改めてここで通知を登録する
+        [[UIApplication sharedApplication] scheduleLocalNotification:self.pendingNotification];
+        self.pendingNotification = nil;
     }
 }
 
