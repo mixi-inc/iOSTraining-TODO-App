@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PLh-j5-pZE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PLh-j5-pZE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
         <!--Add Todo View Controller-->
@@ -17,22 +17,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZe-A3-Cff">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="8" y="49" width="584" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToDo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJ3-fC-zEh">
+                                <rect key="frame" x="8" y="20" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="締切" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BI7-HF-R4S">
+                                <rect key="frame" x="8" y="409" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bFP-6u-mKo">
+                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="7zd-W9-CXU"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="453017984.91895401">
+                                    <!--2015-05-11 06:19:44 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="yrW-cc-CdT" firstAttribute="top" secondItem="AZe-A3-Cff" secondAttribute="bottom" id="2QZ-Es-aKN"/>
-                            <constraint firstItem="AZe-A3-Cff" firstAttribute="top" secondItem="upC-zZ-STI" secondAttribute="top" id="bqy-NE-lfR"/>
-                            <constraint firstItem="AZe-A3-Cff" firstAttribute="leading" secondItem="upC-zZ-STI" secondAttribute="leading" id="mcf-zd-uOj"/>
-                            <constraint firstAttribute="trailing" secondItem="AZe-A3-Cff" secondAttribute="trailing" id="sRM-EC-PoH"/>
+                            <constraint firstItem="BI7-HF-R4S" firstAttribute="leading" secondItem="upC-zZ-STI" secondAttribute="leading" constant="8" id="0eE-EB-s2T"/>
+                            <constraint firstItem="uJ3-fC-zEh" firstAttribute="top" secondItem="upC-zZ-STI" secondAttribute="top" constant="20" id="3bM-N3-4Iu"/>
+                            <constraint firstItem="bFP-6u-mKo" firstAttribute="top" secondItem="BI7-HF-R4S" secondAttribute="bottom" constant="8" id="8Ua-Zn-529"/>
+                            <constraint firstItem="bFP-6u-mKo" firstAttribute="leading" secondItem="upC-zZ-STI" secondAttribute="leading" id="Kb7-Kp-9mZ"/>
+                            <constraint firstAttribute="trailing" secondItem="bFP-6u-mKo" secondAttribute="trailing" id="Ql3-JJ-zPZ"/>
+                            <constraint firstItem="uJ3-fC-zEh" firstAttribute="leading" secondItem="upC-zZ-STI" secondAttribute="leading" constant="8" id="eXK-oC-DAN"/>
+                            <constraint firstItem="AZe-A3-Cff" firstAttribute="leading" secondItem="upC-zZ-STI" secondAttribute="leading" constant="8" id="mcf-zd-uOj"/>
+                            <constraint firstItem="yrW-cc-CdT" firstAttribute="top" secondItem="bFP-6u-mKo" secondAttribute="bottom" id="oUr-49-LKr"/>
+                            <constraint firstItem="AZe-A3-Cff" firstAttribute="top" secondItem="uJ3-fC-zEh" secondAttribute="bottom" constant="8" id="rXR-at-ODR"/>
+                            <constraint firstAttribute="trailing" secondItem="AZe-A3-Cff" secondAttribute="trailing" constant="8" id="sRM-EC-PoH"/>
+                            <constraint firstItem="BI7-HF-R4S" firstAttribute="top" secondItem="AZe-A3-Cff" secondAttribute="bottom" constant="20" id="zpc-yS-cS1"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="datePicker" destination="bFP-6u-mKo" id="uh8-cw-5Yn"/>
                         <outlet property="textView" destination="AZe-A3-Cff" id="SMh-Vo-Y1X"/>
-                        <outlet property="textViewBottomConstraint" destination="2QZ-Es-aKN" id="jSK-v1-LbF"/>
+                        <outlet property="textViewBottomConstraint" destination="oUr-49-LKr" id="Rgz-yN-q2N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGt-Xb-xLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -64,7 +96,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJy-XF-3BF">
                                                     <rect key="frame" x="8" y="8" width="584" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

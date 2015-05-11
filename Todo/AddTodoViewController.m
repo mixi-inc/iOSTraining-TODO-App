@@ -11,6 +11,7 @@
 @interface AddTodoViewController ()
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomConstraint;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
 
