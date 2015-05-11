@@ -10,5 +10,6 @@
 
 @interface TodoTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *todoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

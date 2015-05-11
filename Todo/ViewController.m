@@ -58,6 +58,11 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
     TodoTableViewCell *cell = self.offscreenCell;
     NSDictionary *todo = self.todo[indexPath.row];
     cell.todoLabel.text = todo[@"title"];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM/dd HH:mm まで";
+    cell.dateLabel.text = [dateFormatter stringFromDate:todo[@"date"]];
+
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
     CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -80,6 +85,11 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     NSDictionary *todo = self.todo[indexPath.row];
     cell.todoLabel.text = todo[@"title"];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM/dd HH:mm まで";
+    cell.dateLabel.text = [dateFormatter stringFromDate:todo[@"date"]];
+
     return cell;
 }
 
