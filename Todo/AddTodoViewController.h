@@ -25,7 +25,7 @@
  *  新しいToDoの入力が完了した時に呼ばれるメソッドです.
  *
  *  @param sender  ToDoを入力したViewController
- *  @param newTodo 入力されたToDoです. キャンセルの場合はnilになります.
+ *  @param newTodo 入力されたToDoです. キャンセルの場合はnilになります. 辞書のフォーマットは @{@"title": <タイトル, NSString型>, @"date": <締切, NSDate型>}; のようになります
  */
-- (void)addTodoViewController:(AddTodoViewController *)sender addTodoCompleted:(NSString *)newTodo;
+- (void)addTodoViewController:(AddTodoViewController *)sender addTodoCompleted:(NSDictionary *)newTodo;
 @end

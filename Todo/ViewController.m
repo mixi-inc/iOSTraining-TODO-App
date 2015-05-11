@@ -56,8 +56,8 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TodoTableViewCell *cell = self.offscreenCell;
-
-    cell.todoLabel.text = self.todo[indexPath.row];
+    NSDictionary *todo = self.todo[indexPath.row];
+    cell.todoLabel.text = todo[@"title"];
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
     CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -78,7 +78,8 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.todoLabel.text = self.todo[indexPath.row];
+    NSDictionary *todo = self.todo[indexPath.row];
+    cell.todoLabel.text = todo[@"title"];
     return cell;
 }
 
@@ -128,7 +129,7 @@ static NSString *const kSavedToDoUserDefaultsKey = @"TODO";
 }
 
 // 新しいToDoが追加された時に呼ばれる
-- (void)addTodoViewController:(AddTodoViewController *)sender addTodoCompleted:(NSString *)newTodo
+- (void)addTodoViewController:(AddTodoViewController *)sender addTodoCompleted:(NSDictionary *)newTodo
 {
     // 表示していた AddTodoViewController を閉じる
     [self dismissViewControllerAnimated:YES completion:nil];
