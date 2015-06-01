@@ -14,6 +14,16 @@
 
 // ToDoの編集が完了したタイミングで呼ばれるdelgateのプロパティ
 @property (nonatomic, weak) id<AddTodoViewControllerDelegate> delegate;
+
+/**
+ *  Todoのバリデーションを行います
+ *
+ *  @param dict Todoのエンティティ
+ *
+ *  @return Todoの仕様を満たす場合はYESを, そうでない場合はNOを返します.
+ */
+
+- (BOOL)isValidToDo:(NSDictionary *)dict;
 @end
 
 /**

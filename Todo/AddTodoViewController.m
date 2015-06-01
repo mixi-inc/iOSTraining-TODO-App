@@ -102,8 +102,10 @@
     NSString *title = dict[@"title"];
     NSDate *date = dict[@"date"];
 
-    if (title.length == 0) return NO;
-    if ([date timeIntervalSinceNow] < 0.0) return NO;
+    NSString *trimedTitle = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if (trimedTitle.length == 0) return NO;
+    if (date == nil || [date timeIntervalSinceNow] < 0.0) return NO;
     return YES;
 }
 
