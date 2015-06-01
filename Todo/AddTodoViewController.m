@@ -75,10 +75,36 @@
 
 - (void)doneButtonTapped:(id)sender
 {
-    // doneボタンがタップされた時にdelegateに通知する. 新しいToDoはTextViewのテキストと締切
+
     NSDictionary *newTodo = @{@"title": self.textView.text,
                               @"date": self.datePicker.date};
-    [self.delegate addTodoViewController:self addTodoCompleted:newTodo];
+
+    // 入力されたTODOが要件を満たしているかをチェック
+    if ([self isValidToDo:newTodo]) {
+
+        // 満たしている場合はdelegeteに通知する.
+        [self.delegate addTodoViewController:self addTodoCompleted:newTodo];
+
+    } else {
+
+        // 満たしていない場合はアラートを表示する.
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"TODOの追加に失敗しました"
+                                                                       message:@"本文が空白, あるいは指定日時が過去の可能性があります."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    }
+}
+
+- (BOOL)isValidToDo:(NSDictionary *)dict
+{
+    NSString *title = dict[@"title"];
+    NSDate *date = dict[@"date"];
+
+    if (title.length == 0) return NO;
+    if ([date timeIntervalSinceNow] < 0.0) return NO;
+    return YES;
 }
 
 @end
